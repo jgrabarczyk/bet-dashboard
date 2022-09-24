@@ -1,0 +1,47 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @use "sass:map";
+// @use "@angular/material" as mat;
+// @include mat.core();
+
+// // Define a light theme
+// $light-primary: mat.define-palette(mat.$indigo-palette);
+// $light-accent: mat.define-palette(mat.$pink-palette);
+// $light-warning: mat.define-palette(mat.$red-palette);
+// $light-theme: mat.define-light-theme(
+// 	(
+// 		color: (
+// 			primary: $light-primary,
+// 			accent: $light-accent,
+// 			warning: $light-warning,
+// 		),
+// 	)
+// );
+
+// // Define a dark theme
+// $dark-primary: mat.define-palette(mat.$pink-palette);
+// $dark-accent: mat.define-palette(mat.$blue-grey-palette);
+// $dark-warning: mat.define-palette(mat.$red-palette);
+// $dark-theme: mat.define-dark-theme(
+// 	(
+// 		color: (
+// 			primary: $dark-primary,
+// 			accent: $dark-accent,
+// 			warning: $dark-warning,
+// 		),
+// 	)
+// );
+
+// // Apply the dark theme by default
+// @include mat.core-theme($dark-theme);
+// @include mat.button-theme($dark-theme);
+
+// // Apply the light theme only when the `.my-light-theme` CSS class is applied
+// // to an ancestor element of the components (such as `body`).
+// .light-theme {
+// 	@include mat.core-color($light-theme);
+// 	@include mat.button-color($light-theme);
+// 	//ready to use colors
+// 	$primary: mat.get-color-from-palette($light-primary, 500);
+// 	$accent: mat.get-color-from-palette($light-accent, 500);
+// 	$warning: mat.get-color-from-palette($light-warning, 500);
+// }

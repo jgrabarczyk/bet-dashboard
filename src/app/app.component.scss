@@ -1,0 +1,22 @@
+@import "../theme";
+
+.app-wrapper {
+	height: 100%;
+}
+
+.mat-drawer-backdrop {
+	opacity: 0.5;
+}
+
+.toolbar {
+	height: 50px;
+	width: 100%;
+}
+
+.example-spacer {
+	flex: 1 1 auto;
+}
+.mat-drawer-container,
+.sidenav-container {
+	height: calc(100% - 73px);
+}

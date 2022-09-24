@@ -1,0 +1,26 @@
+<mat-toolbar class="header" color="primary">
+	<mat-toolbar-row>
+		<a class="logo-wrapper" routerLink="/">
+			<img class="logo" src="../assets/svg/logo.svg" alt="" />
+		</a>
+
+		<span class="title"> {{ "title" | translate }}</span>
+
+		<mat-icon aria-hidden="false" aria-label="Example home icon">
+			language
+		</mat-icon>
+
+		<button mat-button [matMenuTriggerFor]="menu">
+			{{ currentLang | translate }}
+		</button>
+		<mat-menu #menu="matMenu">
+			<button
+				*ngFor="let lang of languages"
+				mat-menu-item
+				(click)="setLanguage(lang)"
+			>
+				{{ lang | translate }}
+			</button>
+		</mat-menu>
+	</mat-toolbar-row>
+</mat-toolbar>

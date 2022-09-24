@@ -1,0 +1,22 @@
+{
+	"pl": "polish",
+	"en": "english",
+	"lang": "language",
+	"title": "Your bets",
+	"sidenav": {
+		"popular": {
+			"title": "Popular"
+		},
+		"categories": {
+			"title": "Categories",
+			"basketball": "Basketball",
+			"football": "Soccer",
+			"tenis": "Tenis"
+		}
+	},
+	"table": {
+		"team": "Team",
+		"win": "Modifier",
+		"draw": "Draw"
+	}
+}

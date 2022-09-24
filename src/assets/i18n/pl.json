@@ -1,0 +1,22 @@
+{
+	"pl": "polski",
+	"en": "angielski",
+	"lang": "język",
+	"title": "Twoje Zakłady",
+	"sidenav": {
+		"popular": {
+			"title": "Polecane"
+		},
+		"categories": {
+			"title": "Kategorie",
+			"basketball": "Koszykówka",
+			"football": "Piłka nożna",
+			"tenis": "Tenis"
+		}
+	},
+	"table": {
+		"team": "Zespół",
+		"win": "Przelicznik",
+		"draw": "Remis"
+	}
+}
