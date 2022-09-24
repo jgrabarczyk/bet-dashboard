@@ -1,5 +1,9 @@
 <mat-toolbar class="header" color="primary">
 	<mat-toolbar-row>
+		<button mat-icon-button (click)="toggleSideNav()" *ngIf="isVisible">
+			<mat-icon>menu</mat-icon>
+		</button>
+
 		<a class="logo-wrapper" routerLink="/">
 			<img class="logo" src="../assets/svg/logo.svg" alt="" />
 		</a>

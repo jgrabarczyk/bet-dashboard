@@ -10,20 +10,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
 import { MainHeaderComponent } from './main-header/main-header.component';
 import { MatIconModule } from '@angular/material/icon';
-import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
 
 import { MatTableModule } from '@angular/material/table';
-import { FootbalComponent } from './footbal/footbal.component';
-import { TenisComponent } from './tenis/tenis.component';
-import { BasketballComponent } from './basketball/basketball.component';
+import { TenisComponent } from './pages/tenis/tenis.component';
+import { BasketballComponent } from './pages/basketball/basketball.component';
+import { HomeComponent } from './pages/home/home.component';
+import { FootbalComponent } from './pages/footbal/footbal.component';
+import { SidenavService } from './sidenav/sidenav.service';
+import { PageService } from './pages/abstract/page.service';
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -65,7 +67,7 @@ const material = [
     BrowserAnimationsModule,
     ...material
   ],
-  providers: [],
+  providers: [SidenavService, PageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

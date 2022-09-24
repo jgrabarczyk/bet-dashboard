@@ -1,7 +1,11 @@
 <mat-list>
 	<h3 color="accent">{{ "sidenav.popular.title" | translate }}</h3>
 	<mat-list-item *ngFor="let route of routes">
-		<a [routerLink]="route.path">
+		<a
+			[routerLink]="route.path"
+			[routerLinkActive]="['is-active']"
+			(click)="closeSidenav()"
+		>
 			<h4 mat-line>{{ "sidenav.categories." + route.title | translate }}</h4>
 		</a>
 	</mat-list-item>

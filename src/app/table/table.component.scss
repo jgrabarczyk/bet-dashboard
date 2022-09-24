@@ -1,0 +1,30 @@
+.table {
+	width: 100%;
+	.mat-row {
+		&:nth-child(2n) {
+			background-color: rgb(227, 224, 224);
+		}
+		&:hover {
+			cursor: pointer;
+			background-color: #3f51b56e;
+		}
+	}
+	.mat-row .draw {
+		border-left: 1px solid black;
+		border-right: 1px solid black;
+		text-align: center;
+	}
+
+	.mat-cell {
+		&:hover {
+			background-color: #3f51b5af;
+		}
+	}
+}
+
+.right {
+	text-align: right;
+}
+.draw {
+	text-align: center;
+}

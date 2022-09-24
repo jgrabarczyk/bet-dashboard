@@ -1,19 +1,10 @@
 <div class="app-wrapper mat-app-background">
 	<bd-main-header></bd-main-header>
 	<mat-sidenav-container clas="sidenav-container app-wrapper">
-		<mat-sidenav #sidenav>
+		<mat-sidenav #sidenav mode="side">
 			<bd-sidenav></bd-sidenav>
 		</mat-sidenav>
 		<mat-sidenav-content>
-			<button
-				type="button"
-				mat-stroked-button
-				color="primary"
-				(click)="sidenav.toggle()"
-				*ngIf="isVisible"
-			>
-				<mat-icon>menu</mat-icon>
-			</button>
 			<router-outlet></router-outlet>
 		</mat-sidenav-content>
 	</mat-sidenav-container>

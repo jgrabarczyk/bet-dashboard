@@ -1,30 +1,34 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './environments/environment';
+import { Bet } from './models/bet';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BetSocketService {
-  socket: any;
+  private socket: any;
+  private subject_ = new Subject<Bet[]>();
   constructor(private http: HttpClient) {
     this.socket = io(environment.apiUrl);
+    this.socket.on('bet-updated', (data: Bet[]) => {
+      console.log('on bet-updated: data:', data);
+      this.subject_.next(data);
+    })
   }
 
-  listenBetUpdate() {
-    return new Observable((subscriber) => {
-      this.socket.on('bet-updated', (data) => {
-        subscriber.next(data);
-      });
-    });
+  get subject() {
+
+    return this.subject_;
   }
 
-  initializeSocketConnection() {
-    console.log(environment);
-
-    return this.http.get(environment.apiUrl + '/pulling/start');
+  initializeSocketConnection(rate: number = 0.001) {
+    const params = {
+      rate
+    }
+    return this.http.get(environment.apiUrl + '/pulling/start', { params });
   }
 
   stopSocketConnection() {
