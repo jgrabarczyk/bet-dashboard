@@ -1,11 +1,16 @@
 <div class="app-wrapper mat-app-background">
 	<bd-main-header></bd-main-header>
+
 	<mat-sidenav-container clas="sidenav-container app-wrapper">
 		<mat-sidenav #sidenav mode="side">
 			<bd-sidenav></bd-sidenav>
 		</mat-sidenav>
-		<mat-sidenav-content>
-			<router-outlet></router-outlet>
+
+		<mat-sidenav-content class="main-content">
+			<div class="router-wrapper">
+				<router-outlet></router-outlet>
+			</div>
+			<bd-basket></bd-basket>
 		</mat-sidenav-content>
 	</mat-sidenav-container>
 </div>

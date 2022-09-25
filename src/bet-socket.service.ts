@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './environments/environment';
 import { Bet } from './models/bet';
+import { BetService } from './app/bet.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ import { Bet } from './models/bet';
 export class BetSocketService {
   private socket: any;
   private subject_ = new Subject<Bet[]>();
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private betService: BetService) {
     this.socket = io(environment.apiUrl);
     this.socket.on('bet-updated', (data: Bet[]) => {
-      console.log('on bet-updated: data:', data);
+      this.betService.updateBets(data)
       this.subject_.next(data);
     })
   }
@@ -34,4 +35,5 @@ export class BetSocketService {
   stopSocketConnection() {
     return this.http.get(environment.apiUrl + '/pulling/stop');
   }
+
 }

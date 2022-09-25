@@ -1,4 +1,4 @@
-@import "../theme";
+@import "/src/app/scss/media.mixins.scss";
 
 .app-wrapper {
 	height: 100%;
@@ -11,13 +11,37 @@
 
 .mat-drawer-container,
 .sidenav-container {
-	height: calc(100% - 73px);
+	height: calc(100% - 80px);
 }
 
 .mat-sidenav {
-	width: 200px;
+	width: 250px;
 }
 
 .mat-sidenav-content {
 	padding: 0.5rem;
+}
+
+.main-content {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 50px;
+}
+
+@include mediaTablet {
+	.main-content {
+		grid-template-columns: 1fr 150px;
+		grid-template-rows: 1fr;
+	}
+	.mat-sidenav {
+		width: 150px;
+	}
+}
+@include mediaWeb {
+	.main-content {
+		grid-template-columns: 1fr minmax(300px, 20%);
+	}
+	.mat-sidenav {
+		width: clamp(200px, 20%, 350px);
+	}
 }

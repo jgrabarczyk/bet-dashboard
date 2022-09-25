@@ -1,29 +1,35 @@
-import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
-import { Injectable, OnInit } from '@angular/core';
+import { BreakpointObserver, BreakpointState, Breakpoints } from "@angular/cdk/layout";
+import { Injectable } from '@angular/core';
 import { MatSidenav } from "@angular/material/sidenav";
 import { Subscription } from "rxjs";
-import { OBSERVER_BREAKPOINT_QUERY } from "src/configs/sidenav";
 
+
+/**
+ * @TODO change breakpoint service? 
+ */
 @Injectable()
 export class SidenavService {
   private sidenav: MatSidenav;
   private subscription: Subscription;
 
   get isMobile() {
-    return this.observer.isMatched(OBSERVER_BREAKPOINT_QUERY)
+    return this.observer.isMatched(Breakpoints.Handset)
   }
 
   constructor(
     private observer: BreakpointObserver,
   ) { }
 
-  observeBreakPointChanges() {
-    return this.observer.observe(OBSERVER_BREAKPOINT_QUERY)
-  }
 
   initSideNav(sidenav: MatSidenav) {
     this.sidenav = sidenav;
-    this.subscription = this.observeBreakPointChanges().subscribe({ next: v => this.manageSiednavMode(v) })
+    this.subscription = this.observer
+      .observe(Breakpoints.Handset)
+      .subscribe({
+        next: v => this.manageSiednavMode(v)
+      })
+    console.log(Breakpoints);
+
   }
 
   unsubscribe() {

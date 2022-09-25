@@ -18,5 +18,11 @@
 		"team": "Team",
 		"win": "Modifier",
 		"draw": "Draw"
+	},
+	"basket": {
+		"title": "Bets",
+		"subtitle": "Tax is included in bets calculations (12%)",
+		"totalWage": "Total wage",
+		"submit": "Bet!"
 	}
 }

@@ -1,0 +1,10 @@
+<button
+	[class.hidden]="!visible"
+	mat-mini-fab
+	color="primary"
+	(click)="openBasket()"
+>
+	<mat-icon>attach_money</mat-icon>
+</button>
+
+<bd-basket-card [class.hidden]="visible" class="w-100"></bd-basket-card>

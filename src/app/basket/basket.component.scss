@@ -1,0 +1,17 @@
+@import "/src/app/scss//media.mixins.scss";
+
+:host {
+	display: flex;
+}
+
+::ng-deep .mat-bottom-sheet-container.basket {
+	padding: 0;
+}
+
+@include mediaMobile {
+	:host {
+		position: fixed;
+		bottom: 1rem;
+		right: 1rem;
+	}
+}

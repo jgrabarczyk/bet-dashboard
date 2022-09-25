@@ -1,0 +1,20 @@
+<mat-card class="w-100">
+	<mat-card-title>{{ "basket.title" | translate }}</mat-card-title>
+	<mat-card-subtitle>{{ "basket.subtitle" | translate }}</mat-card-subtitle>
+	<mat-card-content>
+		<mat-list role="list">
+			<mat-list-item role="listitem" *ngFor="let cartBet of cartBets$ | async">
+				{{ cartBet | formatCartBet }}
+			</mat-list-item>
+		</mat-list>
+		<mat-divider></mat-divider>
+		<p [hidden]="wage === 1">
+			{{ "basket.totalWage" | translate }}: {{ wage | number: "1.2-3" }}
+		</p>
+	</mat-card-content>
+	<mat-card-actions>
+		<button mat-raised-button color="primary">
+			{{ "basket.submit" | translate }}
+		</button>
+	</mat-card-actions>
+</mat-card>

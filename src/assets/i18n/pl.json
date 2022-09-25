@@ -18,5 +18,11 @@
 		"team": "Zespół",
 		"win": "Przelicznik",
 		"draw": "Remis"
+	},
+	"basket": {
+		"title": "Koszyk zakładów",
+		"subtitle": "W obliczeniach stawek uwzględniono podatek (12%)",
+		"totalWage": "Kurs całkowity",
+		"submit": "Graj!"
 	}
 }

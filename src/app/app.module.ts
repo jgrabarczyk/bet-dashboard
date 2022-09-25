@@ -25,7 +25,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { FootbalComponent } from './pages/footbal/footbal.component';
 import { SidenavService } from './sidenav/sidenav.service';
 import { PageService } from './pages/abstract/page.service';
-
+import { BasketComponent } from './basket/basket.component';
+import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { BasketCardComponent } from './basket-card/basket-card.component';
+import { MatCardModule } from '@angular/material/card';
+import { CartBetPipe } from './pipes/cart.pipe';
+import { DecimalPipe } from '@angular/common';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,7 +44,14 @@ const material = [
   // MatSlideToggleModule
   MatMenuModule,
   MatIconModule,
-  MatTableModule
+  MatTableModule,
+  MatBottomSheetModule,
+  MatCardModule
+]
+
+const materialProviders = [
+  { provide: MatBottomSheetRef, useValue: {} },
+  { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} }
 ]
 @NgModule({
   declarations: [
@@ -50,7 +62,10 @@ const material = [
     TableComponent,
     FootbalComponent,
     TenisComponent,
-    BasketballComponent
+    BasketballComponent,
+    BasketComponent,
+    BasketCardComponent,
+    CartBetPipe
   ],
   imports: [
     FormsModule,
@@ -67,7 +82,7 @@ const material = [
     BrowserAnimationsModule,
     ...material
   ],
-  providers: [SidenavService, PageService],
+  providers: [SidenavService, PageService, ...materialProviders, CartBetPipe, DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

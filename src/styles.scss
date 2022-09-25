@@ -1,5 +1,9 @@
 @import "./theme";
 
+* {
+	box-sizing: border-box;
+}
+
 html,
 body {
 	height: 100%;
@@ -7,4 +11,12 @@ body {
 body {
 	margin: 0;
 	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.w-100 {
+	width: 100%;
 }
