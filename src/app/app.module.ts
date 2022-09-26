@@ -24,13 +24,20 @@ import { BasketballComponent } from './pages/basketball/basketball.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FootbalComponent } from './pages/footbal/footbal.component';
 import { SidenavService } from './sidenav/sidenav.service';
-import { PageService } from './pages/abstract/page.service';
+
 import { BasketComponent } from './basket/basket.component';
 import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { BasketCardComponent } from './basket-card/basket-card.component';
 import { MatCardModule } from '@angular/material/card';
-import { CartBetPipe } from './pipes/cart.pipe';
+import { CartBetTitlePipe } from './pipes/cart-bet-title.pipe';
 import { DecimalPipe } from '@angular/common';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarService } from './snackbar.service';
+import { MatInputModule } from '@angular/material/input';
+import { CartBetWagePipe } from './pipes/cart-bet-wage.pipe';
+import { HoverDirective } from './directives/hover.directive';
+import { BasketService } from './basket/basket.service';
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -46,7 +53,9 @@ const material = [
   MatIconModule,
   MatTableModule,
   MatBottomSheetModule,
-  MatCardModule
+  MatCardModule,
+  MatSnackBarModule,
+  MatInputModule
 ]
 
 const materialProviders = [
@@ -65,7 +74,9 @@ const materialProviders = [
     BasketballComponent,
     BasketComponent,
     BasketCardComponent,
-    CartBetPipe
+    CartBetTitlePipe,
+    CartBetWagePipe,
+    HoverDirective
   ],
   imports: [
     FormsModule,
@@ -82,7 +93,7 @@ const materialProviders = [
     BrowserAnimationsModule,
     ...material
   ],
-  providers: [SidenavService, PageService, ...materialProviders, CartBetPipe, DecimalPipe],
+  providers: [SidenavService, ...materialProviders, CartBetTitlePipe, CartBetWagePipe, DecimalPipe, SnackbarService, BasketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

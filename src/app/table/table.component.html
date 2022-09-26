@@ -1,17 +1,28 @@
 <table mat-table [dataSource]="data" class="table">
-	<!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
 	<ng-container matColumnDef="team1">
 		<th mat-header-cell *matHeaderCellDef>{{ "table.team" | translate }}</th>
-		<td mat-cell (click)="placeBet(element, 0)" *matCellDef="let element">
+		<td
+			mat-cell
+			(click)="placeBet(element, 0)"
+			*matCellDef="let element"
+			class="left"
+			[bd-hover]
+			bdHoverTarget="left"
+		>
 			{{ element?.teams[0].name }}
 		</td>
 	</ng-container>
 
 	<ng-container matColumnDef="win1">
 		<th mat-header-cell *matHeaderCellDef>{{ "table.win" | translate }}</th>
-		<td mat-cell (click)="placeBet(element, 0)" *matCellDef="let element">
+		<td
+			mat-cell
+			(click)="placeBet(element, 0)"
+			*matCellDef="let element"
+			class="left"
+			[bd-hover]
+			bdHoverTarget="left"
+		>
 			{{ element?.teams[0].win | number: "1.2-3" }}
 		</td>
 	</ng-container>
@@ -39,6 +50,8 @@
 			(click)="placeBet(element, 2)"
 			*matCellDef="let element"
 			class="right"
+			[bd-hover]
+			bdHoverTarget="right"
 		>
 			{{ element?.teams[1].name }}
 		</td>
@@ -53,11 +66,13 @@
 			(click)="placeBet(element, 2)"
 			*matCellDef="let element"
 			class="right"
+			[bd-hover]
+			bdHoverTarget="right"
 		>
 			{{ element?.teams[1].win | number: "1.2-3" }}
 		</td>
 	</ng-container>
 
-	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
 	<tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>

@@ -4,9 +4,7 @@ import { MatSidenav } from "@angular/material/sidenav";
 import { Subscription } from "rxjs";
 
 
-/**
- * @TODO change breakpoint service? 
- */
+
 @Injectable()
 export class SidenavService {
   private sidenav: MatSidenav;
@@ -14,6 +12,9 @@ export class SidenavService {
 
   get isMobile() {
     return this.observer.isMatched(Breakpoints.Handset)
+  }
+  get isTablet() {
+    return this.observer.isMatched(Breakpoints.Tablet)
   }
 
   constructor(

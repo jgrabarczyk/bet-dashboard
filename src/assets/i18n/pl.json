@@ -3,6 +3,7 @@
 	"en": "angielski",
 	"lang": "język",
 	"title": "Twoje Zakłady",
+	"currency": "PLN",
 	"sidenav": {
 		"popular": {
 			"title": "Polecane"
@@ -22,7 +23,18 @@
 	"basket": {
 		"title": "Koszyk zakładów",
 		"subtitle": "W obliczeniach stawek uwzględniono podatek (12%)",
+		"amount": "Kwota zakładu",
 		"totalWage": "Kurs całkowity",
+		"totalAmount": "Kwota całkowita",
 		"submit": "Graj!"
+	},
+	"snackbar": {
+		"alert": {
+			"alreadyInBasket": "Zakład już jest w koszyku"
+		},
+		"info": {
+			"betPlaced": "Zakład został dodany",
+			"betUpdated": "Zakład został zmodyfikowany"
+		}
 	}
 }

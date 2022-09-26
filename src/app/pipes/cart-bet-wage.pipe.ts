@@ -2,23 +2,14 @@ import { DecimalPipe } from "@angular/common";
 import { Pipe, PipeTransform } from "@angular/core";
 
 import { CartBet } from "src/models/cartBet";
-/*
- * Raise the value exponentially
- * Takes an exponent argument that defaults to 1.
- * Usage:
- *   value | exponentialStrength:exponent
- * Example:
- *   {{ 2 | exponentialStrength:10 }}
- *   formats to: 1024
-*/
-@Pipe({ name: 'formatCartBet' })
-export class CartBetPipe implements PipeTransform {
+import { DECIMAL_PIPE_ARG } from '../../configs/globals';
+
+@Pipe({ name: 'cartBetWage' })
+export class CartBetWagePipe implements PipeTransform {
   constructor(private numberPipe: DecimalPipe) {
   }
   transform(cartBet: CartBet): string {
-    const wage = this.getBetWage(cartBet);
-
-    return `${cartBet.bet.teams[0].name} - ${cartBet.bet.teams[1].name} | ${wage}`
+    return this.getBetWage(cartBet)
   }
 
   private getBetWage(cartBet: CartBet) {
@@ -36,6 +27,6 @@ export class CartBetPipe implements PipeTransform {
       default:
         throw new Error('Incorrenct betType');
     }
-    return this.numberPipe.transform(wage, '1.2-3')
+    return this.numberPipe.transform(wage, DECIMAL_PIPE_ARG)
   }
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Page } from '../abstract/page.abstract';
-import { PageService } from '../abstract/page.service';
+import { Component } from '@angular/core';
+import { BetPage } from '../generic/bet-page';
+
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { BetSocketService } from '../../../bet-socket.service';
+import { BetService } from '../../bet.service';
 
 @UntilDestroy()
 @Component({
@@ -10,9 +11,9 @@ import { BetSocketService } from '../../../bet-socket.service';
   templateUrl: './footbal.component.html',
   styleUrls: ['./footbal.component.scss']
 })
-export class FootbalComponent extends Page {
-  constructor(protected socketService: BetSocketService) {
-    super(socketService)
+export class FootbalComponent extends BetPage {
+  constructor(protected socketService: BetSocketService, private betSerivce: BetService) {
+    super(socketService, betSerivce)
     super.rate = 0.1;
   }
 }

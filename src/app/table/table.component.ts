@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Bet } from 'src/models/bet';
 import { BetType } from 'src/models/betType';
 import { BetService } from '../bet.service';

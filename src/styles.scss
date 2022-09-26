@@ -2,6 +2,9 @@
 
 * {
 	box-sizing: border-box;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
 }
 
 html,
@@ -12,11 +15,21 @@ body {
 	margin: 0;
 	font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
+[hidden],
 .hidden {
 	display: none !important;
 }
 
 .w-100 {
 	width: 100%;
+}
+
+.snackbar {
+	&-alert {
+		background-color: #ffb3b3;
+		color: black;
+		.mat-simple-snackbar-action {
+			color: black;
+		}
+	}
 }

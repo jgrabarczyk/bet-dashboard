@@ -5,10 +5,18 @@
 }
 
 ::ng-deep .mat-bottom-sheet-container.basket {
-	padding: 0;
+	padding: 0 !important;
 }
 
 @include mediaMobile {
+	:host {
+		position: fixed;
+		bottom: 1rem;
+		right: 1rem;
+	}
+}
+
+@include mediaTablet {
 	:host {
 		position: fixed;
 		bottom: 1rem;

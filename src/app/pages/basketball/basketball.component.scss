@@ -1,0 +1,7 @@
+@import "/src/app/scss/variables";
+
+:host {
+	height: $contentHeight;
+	display: block;
+	overflow: auto;
+}

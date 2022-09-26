@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import { Page } from '../abstract/page.abstract';
-import { PageService } from '../abstract/page.service';
+import { BetPage } from '../generic/bet-page';
+
 import { BetSocketService } from '../../../bet-socket.service';
+import { BetService } from 'src/app/bet.service';
 
 @Component({
   selector: 'bd-basketball',
   templateUrl: './basketball.component.html',
   styleUrls: ['./basketball.component.scss']
 })
-export class BasketballComponent extends Page {
-  constructor(protected socketService: BetSocketService) {
-    super(socketService)
-    super.rate = 0.001;
+export class BasketballComponent extends BetPage {
+  constructor(protected socketService: BetSocketService, private betSerivce: BetService) {
+    super(socketService, betSerivce)
+    super.rate = 1;
   }
 }

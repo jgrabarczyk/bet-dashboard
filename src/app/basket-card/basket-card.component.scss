@@ -1,0 +1,52 @@
+.flex {
+	display: flex;
+	justify-content: space-between;
+	&-center {
+		align-items: center;
+	}
+}
+
+.totalWage {
+	margin-bottom: 8px;
+}
+
+.amount {
+	&-field {
+		display: block;
+		width: 100%;
+		max-width: 75px;
+		&-input {
+			text-align: right;
+		}
+	}
+}
+
+.bet {
+	&-title {
+		text-align: left;
+	}
+	&-wage {
+		text-align: right;
+		font-weight: bold;
+	}
+	&-list {
+		max-height: 35vh;
+		overflow: auto;
+	}
+}
+
+::ng-deep {
+	.mat-form-field-wrapper {
+		padding: 0;
+	}
+	.mat-list-item-content,
+	.mat-form-field-flex {
+		padding: 0 !important;
+	}
+	.mat-list-item-content {
+		width: 100%;
+	}
+	.mat-form-field-underline {
+		bottom: 0.7em;
+	}
+}

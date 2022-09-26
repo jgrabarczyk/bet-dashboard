@@ -1,28 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { BasketCardComponent } from '../basket-card/basket-card.component';
-import { SidenavService } from '../sidenav/sidenav.service';
+import { Component } from '@angular/core';
+import { BasketService } from './basket.service';
 
 @Component({
   selector: 'bd-basket',
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss']
 })
-export class BasketComponent implements OnInit {
+export class BasketComponent {
 
   get visible() {
-    return this.sidenavService.isMobile
+    return this.basketService.visible
   }
 
-
-  constructor(private sidenavService: SidenavService, private bottomSheetRef_: MatBottomSheet) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private basketService: BasketService) { }
 
   openBasket() {
-    this.bottomSheetRef_.open(BasketCardComponent, {
-      panelClass: 'basket'
-    })
+    this.basketService.openBasket()
   }
+
 }

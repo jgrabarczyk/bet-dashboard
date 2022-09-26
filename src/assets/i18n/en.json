@@ -22,7 +22,17 @@
 	"basket": {
 		"title": "Bets",
 		"subtitle": "Tax is included in bets calculations (12%)",
+		"amount": "Bet amount",
 		"totalWage": "Total wage",
+		"totalAmount": "Total amount",
 		"submit": "Bet!"
+	},
+	"snackbar": {
+		"alert": {
+			"alreadyInBasket": "Bet is already in basket"
+		},
+		"info": {
+			"betPlaced": "Bet added"
+		}
 	}
 }

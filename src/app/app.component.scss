@@ -1,21 +1,24 @@
 @import "/src/app/scss/media.mixins.scss";
-
-.app-wrapper {
-	height: 100%;
-}
+@import "/src/app/scss/variables";
 
 .toolbar {
 	height: 50px;
 	width: 100%;
 }
 
+.mat-drawer-content {
+	overflow: hidden;
+}
+
 .mat-drawer-container,
 .sidenav-container {
-	height: calc(100% - 80px);
+	height: $contentHeight;
+	display: block;
+	overflow: auto;
 }
 
 .mat-sidenav {
-	width: 250px;
+	width: 180px;
 }
 
 .mat-sidenav-content {
@@ -29,14 +32,11 @@
 }
 
 @include mediaTablet {
-	.main-content {
-		grid-template-columns: 1fr 150px;
-		grid-template-rows: 1fr;
-	}
 	.mat-sidenav {
-		width: 150px;
+		width: 120px;
 	}
 }
+
 @include mediaWeb {
 	.main-content {
 		grid-template-columns: 1fr minmax(300px, 20%);

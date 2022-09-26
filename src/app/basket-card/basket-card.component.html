@@ -2,18 +2,46 @@
 	<mat-card-title>{{ "basket.title" | translate }}</mat-card-title>
 	<mat-card-subtitle>{{ "basket.subtitle" | translate }}</mat-card-subtitle>
 	<mat-card-content>
-		<mat-list role="list">
+		<mat-list role="list" class="bet-list">
 			<mat-list-item role="listitem" *ngFor="let cartBet of cartBets$ | async">
-				{{ cartBet | formatCartBet }}
+				<div class="flex w-100">
+					<div class="bet-title">{{ cartBet | cartBetTitle }}</div>
+					<div class="bet-wage">{{ cartBet | cartBetWage }}</div>
+				</div>
+				<button mat-icon-button aria-label="Clear" (click)="remove(cartBet)">
+					<mat-icon>close</mat-icon>
+				</button>
 			</mat-list-item>
 		</mat-list>
 		<mat-divider></mat-divider>
-		<p [hidden]="wage === 1">
-			{{ "basket.totalWage" | translate }}: {{ wage | number: "1.2-3" }}
-		</p>
+		<div class="flex flex-center">
+			<label class="amount-label">
+				{{ "basket.amount" | translate }} ({{ "currency" | translate }})
+			</label>
+			<mat-form-field class="amount-field" appearance="fill" floatLabel="never">
+				<input
+					class="amount-field-input"
+					matInput
+					type="number"
+					[(ngModel)]="amount"
+				/>
+			</mat-form-field>
+		</div>
+
+		<div [hidden]="isDefaultWage" class="flex totalWage">
+			<p>{{ "basket.totalWage" | translate }}</p>
+			<p>{{ wage | number: DECIMAL_PIPE_ARG }}</p>
+		</div>
+		<div [hidden]="isDefaultWage" class="flex">
+			<p>{{ "basket.totalAmount" | translate }}</p>
+			<p>
+				{{ totalAmount | number: DECIMAL_PIPE_ARG }}
+				{{ "currency" | translate }}
+			</p>
+		</div>
 	</mat-card-content>
 	<mat-card-actions>
-		<button mat-raised-button color="primary">
+		<button mat-raised-button color="primary" [disabled]="isDefaultWage">
 			{{ "basket.submit" | translate }}
 		</button>
 	</mat-card-actions>
