@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { BetPage } from '../generic/bet-page';
 
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { BetSocketService } from '../../../bet-socket.service';
-import { BetService } from '../../bet.service';
+import { BetSocketService } from '../../api/bet-socket.service';
+import { BetService } from '../../services/bet.service';
 
 @UntilDestroy()
 @Component({

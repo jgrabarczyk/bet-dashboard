@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { POPULAR_CATEGORIES_ROUTES } from '../../configs/routes';
-import { SiteRoute } from '../../models/route';
+
+
 import { SidenavService } from './sidenav.service';
+import { SiteRoute } from '../../../models/route';
+import { POPULAR_CATEGORIES_ROUTES } from 'src/configs/routes';
 
 @Component({
   selector: 'bd-sidenav',

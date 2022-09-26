@@ -21,7 +21,7 @@
 	},
 	"basket": {
 		"title": "Bets",
-		"subtitle": "Tax is included in bets calculations (12%)",
+		"subtitle": "Tax is included in bets calculations ({{tax_rate}}%)",
 		"amount": "Bet amount",
 		"totalWage": "Total wage",
 		"totalAmount": "Total amount",
@@ -32,7 +32,9 @@
 			"alreadyInBasket": "Bet is already in basket"
 		},
 		"info": {
-			"betPlaced": "Bet added"
+			"betPlaced": "Bet added",
+			"betUpdated": "Bet updated",
+			"submited": "Bet submited! You can win {{betValue}} PLN"
 		}
 	}
 }

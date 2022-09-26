@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { BetPage } from '../generic/bet-page';
+import { BetSocketService } from '../../api/bet-socket.service';
+import { BetService } from '../../services/bet.service';
 
-import { BetSocketService } from '../../../bet-socket.service';
-import { BetService } from 'src/app/bet.service';
 
 @Component({
   selector: 'bd-basketball',

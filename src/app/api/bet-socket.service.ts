@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
-import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './environments/environment';
-import { Bet } from './models/bet';
-import { BetService } from './app/bet.service';
+import { BetService } from '../services/bet.service';
+import { environment } from 'src/environments/environment';
+import { Bet } from '../../models/bet';
+import { BasketService } from '../components/basket/basket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,7 @@ import { BetService } from './app/bet.service';
 export class BetSocketService {
   private socket: any;
 
-  private subject_ = new Subject<Bet[]>();
-  constructor(private http: HttpClient, private betService: BetService) {
+  constructor(private http: HttpClient, private betService: BetService, private basketService: BasketService) {
     this.socket = io(environment.apiUrl);
     this.observeSocketEvent()
   }
@@ -32,7 +31,7 @@ export class BetSocketService {
   private observeSocketEvent() {
     this.socket.on('bet-updated', (data: Bet[]) => {
       this.betService.syncBets(data)
-      this.subject_.next(data);
+      this.basketService.syncBasketsBets(data)
     })
   }
 }

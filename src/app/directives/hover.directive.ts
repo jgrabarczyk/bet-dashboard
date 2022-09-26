@@ -1,14 +1,19 @@
 import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 
+/**
+ * Create custom hover for bet's table.
+ * add bd-hover class to every element from bdHoverTarget while hovering over element
+ */
 @Directive({
   selector: '[bd-hover]',
 })
 export class HoverDirective {
-  elements: NodeListOf<Element>
   @Input() bdHoverTarget: string;
+  elements: NodeListOf<Element>
 
   constructor(private el: ElementRef) {
   }
+
   ngOnInit() {
     this.initializeElements()
   }
@@ -17,6 +22,7 @@ export class HoverDirective {
   onTouchStart() {
     this.addHoverClass()
   }
+
   @HostListener('mouseover')
   onMouseOver() {
     this.addHoverClass()
@@ -26,6 +32,7 @@ export class HoverDirective {
   onTouchEnd() {
     this.removeHoverClass()
   }
+
   @HostListener('mouseout')
   onMouseOut() {
     this.removeHoverClass()

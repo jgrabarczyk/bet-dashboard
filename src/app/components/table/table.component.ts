@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Bet } from 'src/models/bet';
 import { BetType } from 'src/models/betType';
-import { BetService } from '../bet.service';
+import { BasketService } from '../basket/basket.service';
 
 @Component({
   selector: 'bd-table',
@@ -12,11 +12,10 @@ export class TableComponent {
   @Input() data: Bet[];
   displayedColumns: string[] = ['team1', 'win1', 'draw', 'win2', 'team2'];
 
-  constructor(private betService: BetService) {
+  constructor(private basketService: BasketService) {
   }
 
-
   placeBet(bet: Bet, betType: BetType) {
-    this.betService.placeBet({ bet, betType })
+    this.basketService.placeBet({ bet, betType })
   }
 }

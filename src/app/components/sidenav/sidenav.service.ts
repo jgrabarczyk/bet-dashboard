@@ -1,39 +1,28 @@
-import { BreakpointObserver, BreakpointState, Breakpoints } from "@angular/cdk/layout";
+import { BreakpointState, Breakpoints } from "@angular/cdk/layout";
 import { Injectable } from '@angular/core';
 import { MatSidenav } from "@angular/material/sidenav";
 import { Subscription } from "rxjs";
-
-
+import { BreakpointService } from '../../services/breakpoint-service';
 
 @Injectable()
 export class SidenavService {
   private sidenav: MatSidenav;
   private subscription: Subscription;
 
-  get isMobile() {
-    return this.observer.isMatched(Breakpoints.Handset)
-  }
-  get isTablet() {
-    return this.observer.isMatched(Breakpoints.Tablet)
-  }
-
   constructor(
-    private observer: BreakpointObserver,
+    private breakpointService: BreakpointService
   ) { }
-
 
   initSideNav(sidenav: MatSidenav) {
     this.sidenav = sidenav;
-    this.subscription = this.observer
+    this.subscription = this.breakpointService.observer
       .observe(Breakpoints.Handset)
       .subscribe({
         next: v => this.manageSiednavMode(v)
       })
-    console.log(Breakpoints);
-
   }
 
-  unsubscribe() {
+  unsubscribeBreakpointChanges() {
     this.subscription.unsubscribe();
   }
 
@@ -47,8 +36,11 @@ export class SidenavService {
     }
   }
 
+  /**
+   * @TODO is close and toggle both needed   
+   */
   close() {
-    if (!this.isMobile) return
+    if (!this.breakpointService.isMobile) return
     this.sidenav.close();
   }
 

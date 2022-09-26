@@ -8,8 +8,8 @@ import { BasketService } from './basket.service';
 })
 export class BasketComponent {
 
-  get visible() {
-    return this.basketService.visible
+  get isBasketCardVisible() {
+    return this.basketService.isBasketCardVisible
   }
 
   constructor(private basketService: BasketService) { }

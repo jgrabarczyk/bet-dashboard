@@ -1,37 +1,55 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Bet } from 'src/models/bet';
-import { CartBet } from 'src/models/cartBet';
-import { SidenavService } from './sidenav/sidenav.service';
-import { SnackbarService } from './snackbar.service';
+import { Injectable } from "@angular/core";
+import { BasketCardComponent } from "./basket-card/basket-card.component";
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { BehaviorSubject } from "rxjs";
+import { CartBet } from "src/models/cartBet";
+import { Bet } from './../../../models/bet';
+import { BreakpointService } from './../../services/breakpoint-service';
+import { SnackbarService } from "./../../services/snackbar.service";
+import { DECIMAL_PIPE_ARG, TAX_RATE } from '../../../configs/globals';
+import { DecimalPipe } from "@angular/common";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class BetService {
-  private bets$_: BehaviorSubject<Bet[]> = new BehaviorSubject([]);
+@Injectable()
+export class BasketService {
+  amount = 5;
   private cartBets$_: BehaviorSubject<CartBet[]> = new BehaviorSubject([]);
   private currentWage$: BehaviorSubject<number> = new BehaviorSubject(1);
 
-  constructor(private snackbarService: SnackbarService, private sidenavService: SidenavService) { }
-
-  get bets$() {
-    return this.bets$_.asObservable();
-  }
   get cartBets$() {
     return this.cartBets$_.asObservable()
+  }
+
+  get isBasketCardVisible() {
+    return !this.breakpointService.isMobile && !this.breakpointService.isTablet
   }
 
   get basketWage() {
     return this.currentWage$.value
   }
 
+  get betTotalValue() {
+    return this.basketWage * this.amount * (1 - TAX_RATE);
+  }
+
+  constructor(
+    private breakpointService: BreakpointService,
+    private bottomSheetRef_: MatBottomSheet,
+    private snackbarService: SnackbarService,
+    private numberPipe: DecimalPipe
+  ) { }
+
+  openBasket() {
+    this.bottomSheetRef_.open(BasketCardComponent, {
+      panelClass: 'basket'
+    })
+  }
+
   /**
-   * add cartBet to cartBets$_ 
-   * if cartBet with same betType exists show snackbar alert
-   * if cartBet exists in carBets$_ but is different type update cartBet and show snackbar info
-   * if cartBet not exist in carBets$_ add it to list  and show snackbar info. 
-   */
+  * add cartBet to cartBets$_ 
+  * if cartBet with same betType exists show snackbar alert
+  * if cartBet exists in carBets$_ but is different type update cartBet and show snackbar info
+  * if cartBet not exist in carBets$_ add it to list  and show snackbar info. 
+  */
   placeBet(newCartBet: CartBet) {
     const betFromBasket = this.getFromBasket(newCartBet.bet.id);
     const sameType = newCartBet.betType === betFromBasket?.betType;
@@ -59,30 +77,8 @@ export class BetService {
     this.recalculateWages();
   }
 
-  /**
-   * Update loaded bets accodrinly to new data
-   */
-  syncBets(bets: Bet[]) {
-    const updatedBets = [];
 
-    this.bets$_.value.forEach(currentBet => {
-      const index = bets.findIndex(bet => currentBet.id == bet.id)
-      const updatedBet = index !== -1 ? bets[index] : currentBet
-      updatedBets.push(updatedBet);
-    })
-
-    this.bets$_.next(updatedBets)
-    this.updateBasketsBets(bets)
-  }
-
-  setBets(bets: Bet[]) {
-    this.bets$_.next(bets);
-  }
-
-  /**
-   * update basket bets accodrinly to new data 
-   */
-  private updateBasketsBets(bets: Bet[]) {
+  syncBasketsBets(bets: Bet[]) {
     const updatedBets = []
 
     this.cartBets$_.value.forEach(cartBet => {
@@ -123,5 +119,12 @@ export class BetService {
 
   private getFromBasket(id: number) {
     return this.cartBets$_.value.find(v => v.bet.id === id)
+  }
+
+  submit() {
+    const totalValue = this.numberPipe.transform(this.betTotalValue, DECIMAL_PIPE_ARG)
+    this.snackbarService.info({ message: 'snackbar.info.submited', params: { betValue: totalValue } });
+    this.bottomSheetRef_.dismiss();
+    this.cartBets$_.next([]);
   }
 }

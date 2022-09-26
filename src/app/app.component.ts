@@ -3,8 +3,8 @@ import {
   ViewChild,
 } from "@angular/core";
 import { MatSidenav } from '@angular/material/sidenav';
-import { SidenavService } from "./sidenav/sidenav.service";
 import { ChangeDetectorRef } from '@angular/core';
+import { SidenavService } from "./components/sidenav/sidenav.service";
 @Component({
   selector: "bd-root",
   templateUrl: "./app.component.html",
@@ -12,7 +12,6 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class AppComponent {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
-
 
   constructor(
     private sidenavService: SidenavService,
@@ -24,7 +23,8 @@ export class AppComponent {
     this.sidenavService.initSideNav(this.sidenav);
     this.cr.detectChanges();
   }
+
   ngOnDestroy() {
-    this.sidenavService.unsubscribe();
+    this.sidenavService.unsubscribeBreakpointChanges();
   }
 }

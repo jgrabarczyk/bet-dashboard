@@ -1,6 +1,8 @@
 <mat-card class="w-100">
 	<mat-card-title>{{ "basket.title" | translate }}</mat-card-title>
-	<mat-card-subtitle>{{ "basket.subtitle" | translate }}</mat-card-subtitle>
+	<mat-card-subtitle>
+		{{ "basket.subtitle" | translate: { tax_rate: taxRate } }}
+	</mat-card-subtitle>
 	<mat-card-content>
 		<mat-list role="list" class="bet-list">
 			<mat-list-item role="listitem" *ngFor="let cartBet of cartBets$ | async">
@@ -13,7 +15,9 @@
 				</button>
 			</mat-list-item>
 		</mat-list>
+
 		<mat-divider></mat-divider>
+
 		<div class="flex flex-center">
 			<label class="amount-label">
 				{{ "basket.amount" | translate }} ({{ "currency" | translate }})
@@ -32,6 +36,7 @@
 			<p>{{ "basket.totalWage" | translate }}</p>
 			<p>{{ wage | number: DECIMAL_PIPE_ARG }}</p>
 		</div>
+
 		<div [hidden]="isDefaultWage" class="flex">
 			<p>{{ "basket.totalAmount" | translate }}</p>
 			<p>
@@ -40,8 +45,14 @@
 			</p>
 		</div>
 	</mat-card-content>
+
 	<mat-card-actions>
-		<button mat-raised-button color="primary" [disabled]="isDefaultWage">
+		<button
+			mat-raised-button
+			color="primary"
+			[disabled]="isDefaultWage"
+			(click)="submit()"
+		>
 			{{ "basket.submit" | translate }}
 		</button>
 	</mat-card-actions>

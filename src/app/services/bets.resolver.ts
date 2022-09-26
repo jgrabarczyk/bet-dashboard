@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {
-  Router, Resolve,
+  Resolve,
   RouterStateSnapshot,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Bet } from 'src/models/bet';
-import { BetApiService } from './bet-api.service';
+import { BetApiService } from '../api/bet-api.service';
 import { BetService } from './bet.service';
 
 @Injectable({
@@ -17,10 +17,8 @@ export class BetsResolver implements Resolve<Bet[]> {
   }
 
   resolve(_: ActivatedRouteSnapshot, __: RouterStateSnapshot): Observable<Bet[]> {
-    return this.betsApi.getAllBets().pipe(tap(bets => {
-      console.log('resolver', bets);
-      this.betService.setBets(bets)
-
-    }));
+    return this.betsApi.getAllBets().pipe(tap(
+      bets => this.betService.setBets(bets)
+    ));
   }
 }

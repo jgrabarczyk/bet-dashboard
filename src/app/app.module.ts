@@ -9,34 +9,35 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule } from '@angular/forms';
-import { MainHeaderComponent } from './main-header/main-header.component';
+import { MainHeaderComponent } from './components/main-header/main-header.component';
 import { MatIconModule } from '@angular/material/icon';
-import { TableComponent } from './table/table.component';
+import { TableComponent } from './components/table/table.component';
 
 import { MatTableModule } from '@angular/material/table';
 import { TenisComponent } from './pages/tenis/tenis.component';
 import { BasketballComponent } from './pages/basketball/basketball.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FootbalComponent } from './pages/footbal/footbal.component';
-import { SidenavService } from './sidenav/sidenav.service';
+import { SidenavService } from './components/sidenav/sidenav.service';
 
-import { BasketComponent } from './basket/basket.component';
+import { BasketComponent } from './components/basket/basket.component';
 import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { BasketCardComponent } from './basket-card/basket-card.component';
+import { BasketCardComponent } from './components/basket/basket-card/basket-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { CartBetTitlePipe } from './pipes/cart-bet-title.pipe';
 import { DecimalPipe } from '@angular/common';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { SnackbarService } from './snackbar.service';
 import { MatInputModule } from '@angular/material/input';
 import { CartBetWagePipe } from './pipes/cart-bet-wage.pipe';
 import { HoverDirective } from './directives/hover.directive';
-import { BasketService } from './basket/basket.service';
+import { BasketService } from './components/basket/basket.service';
+import { SnackbarService } from './services/snackbar.service';
+import { BreakpointService } from './services/breakpoint-service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -93,7 +94,7 @@ const materialProviders = [
     BrowserAnimationsModule,
     ...material
   ],
-  providers: [SidenavService, ...materialProviders, CartBetTitlePipe, CartBetWagePipe, DecimalPipe, SnackbarService, BasketService],
+  providers: [SidenavService, ...materialProviders, CartBetTitlePipe, CartBetWagePipe, DecimalPipe, SnackbarService, BasketService, BreakpointService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

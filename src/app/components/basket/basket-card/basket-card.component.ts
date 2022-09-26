@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BetService } from '../bet.service';
-import { CartBet } from '../../models/cartBet';
-import { DECIMAL_PIPE_ARG } from '../../configs/globals';
-import { BasketService } from '../basket/basket.service';
+import { DECIMAL_PIPE_ARG, TAX_RATE } from 'src/configs/globals';
+import { CartBet } from 'src/models/cartBet';
+
+import { BasketService } from '../basket.service';
 
 @Component({
   selector: 'bd-basket-card',
@@ -27,20 +27,28 @@ export class BasketCardComponent implements OnInit {
   }
 
   get wage() {
-    return this.betService.basketWage
+    return this.basketService.basketWage
   }
 
   get totalAmount() {
-    return this.wage * this.amount * 0.88;
+    return this.basketService.betTotalValue;
   }
 
-  constructor(private betService: BetService, private basketService: BasketService) { }
+  get taxRate() {
+    return TAX_RATE * 100
+  }
+
+  constructor(private basketService: BasketService) { }
 
   ngOnInit(): void {
-    this.cartBets$ = this.betService.cartBets$
+    this.cartBets$ = this.basketService.cartBets$
   }
 
   remove(cartBet: CartBet) {
-    this.betService.removeBetById(cartBet.bet.id)
+    this.basketService.removeBetById(cartBet.bet.id)
+  }
+
+  submit() {
+    this.basketService.submit();
   }
 }

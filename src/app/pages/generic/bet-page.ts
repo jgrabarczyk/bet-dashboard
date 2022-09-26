@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { BetSocketService } from "src/bet-socket.service";
-import { BetService } from '../../bet.service';
+import { BetSocketService } from '../../api/bet-socket.service';
+import { BetService } from '../../services/bet.service';
 
 @Component({ template: '' })
 export class BetPage {

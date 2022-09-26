@@ -22,7 +22,7 @@
 	},
 	"basket": {
 		"title": "Koszyk zakładów",
-		"subtitle": "W obliczeniach stawek uwzględniono podatek (12%)",
+		"subtitle": "W obliczeniach stawek uwzględniono podatek ({{tax_rate}}%)",
 		"amount": "Kwota zakładu",
 		"totalWage": "Kurs całkowity",
 		"totalAmount": "Kwota całkowita",
@@ -34,7 +34,8 @@
 		},
 		"info": {
 			"betPlaced": "Zakład został dodany",
-			"betUpdated": "Zakład został zmodyfikowany"
+			"betUpdated": "Zakład został zmodyfikowany",
+			"submited": "Zakład został złożony. Grasz o {{betValue}} PLN"
 		}
 	}
 }

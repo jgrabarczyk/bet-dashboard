@@ -1,9 +1,9 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LANGUAGES } from '../../configs/languages';
+import { BreakpointService } from 'src/app/services/breakpoint-service';
+import { LANGUAGES } from 'src/configs/languages';
 import { SidenavService } from '../sidenav/sidenav.service';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-@UntilDestroy()
+
 @Component({
   selector: 'bd-main-header',
   templateUrl: './main-header.component.html',
@@ -14,12 +14,13 @@ export class MainHeaderComponent {
   currentLang = 'pl';
 
   get isVisible() {
-    return this.sidenavService.isMobile
+    return this.breakpointService.isMobile
   }
 
   constructor(
     private translate: TranslateService,
-    private sidenavService: SidenavService,
+    private breakpointService: BreakpointService,
+    private sidenavService: SidenavService
   ) {
     this.initializeTranslations();
   }
